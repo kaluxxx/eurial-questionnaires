@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Réglementation sociale du transport — espace apprenants Eurial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--rouge:#c73626;--rose:#df8c83;--ardoise:#1f2937;--gris:#64748b;--brume:#cbd5e1;--fond:#f8fafc;--blanc:#fff;--vert:#2f7d4f;
+  --font:"Urbanist",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--font);color:var(--ardoise);background:var(--fond);font-size:17px;line-height:1.5;
+  padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0)}
+header.top{background:var(--blanc);border-bottom:1px solid var(--brume)}
+header.top .in{max-width:760px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+header.top svg{height:30px;width:auto;display:block}
+header.top .client{font-size:14px;color:var(--gris);text-align:right}
+header.top .client b{color:var(--ardoise);font-weight:700}
+main{max-width:760px;margin:0 auto;padding:28px 20px 48px}
+h1{font-size:30px;line-height:1.15;font-weight:800;margin:0 0 8px;letter-spacing:-.01em}
+h2{font-size:21px;font-weight:700;margin:28px 0 10px}
+p.lead{color:var(--gris);margin:0 0 24px;max-width:62ch}
+label.f{display:block;font-weight:600;font-size:15px;margin:18px 0 6px}
+input[type=text],select{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--brume);border-radius:10px;background:var(--blanc);color:var(--ardoise)}
+input[type=text]:focus,select:focus,button:focus-visible,.opt:focus-within{outline:3px solid var(--rose);outline-offset:2px}
+.choix{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.carte{background:var(--blanc);border:1.5px solid var(--brume);border-radius:14px;padding:18px;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.carte:hover{border-color:var(--ardoise)}
+.carte .moment{font-size:14px;color:var(--rouge);font-weight:700}
+.carte .nom{font-size:19px;font-weight:700;margin:2px 0 6px;display:block}
+.carte .det{font-size:14px;color:var(--gris)}
+.err{color:var(--rouge);font-weight:600;font-size:15px;min-height:22px;margin-top:10px}
+.prog{height:6px;background:var(--brume);border-radius:6px;overflow:hidden;margin:6px 0 22px}
+.prog i{display:block;height:100%;background:var(--rouge);transition:width .25s}
+.etape{font-size:14px;color:var(--gris);display:flex;justify-content:space-between}
+.theme{font-size:14px;font-weight:700;color:var(--rouge);margin-bottom:6px}
+.question{font-size:22px;font-weight:700;line-height:1.3;margin:0 0 20px}
+.opt{display:flex;gap:12px;align-items:flex-start;background:var(--blanc);border:1.5px solid var(--brume);border-radius:12px;padding:14px 16px;margin-bottom:10px;cursor:pointer}
+.opt input{margin-top:5px;accent-color:var(--rouge);width:18px;height:18px;flex:none}
+.opt.sel{border-color:var(--rouge);background:#fdf3f2}
+.opt.jnsp{border-style:dashed;color:var(--gris)}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+button{font:inherit;font-weight:700;border-radius:10px;padding:12px 20px;cursor:pointer;border:1.5px solid var(--ardoise)}
+button.p{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button.p:disabled{opacity:.4;cursor:not-allowed}
+button.g{background:var(--blanc);color:var(--ardoise)}
+.score{display:flex;align-items:baseline;gap:10px;margin:8px 0 4px}
+.score .n{font-size:64px;font-weight:800;line-height:1;color:var(--rouge)}
+.score .s{font-size:22px;font-weight:700;color:var(--gris)}
+.jauges{margin:18px 0 8px}
+.j{margin-bottom:12px}
+.j .l{display:flex;justify-content:space-between;font-size:15px;font-weight:600}
+.j .b{height:10px;background:var(--brume);border-radius:6px;overflow:hidden;margin-top:4px}
+.j .b i{display:block;height:100%;background:var(--ardoise)}
+.note{background:var(--blanc);border:1.5px solid var(--brume);border-radius:12px;padding:14px 16px;font-size:15px;margin:18px 0}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+.corr{background:var(--blanc);border:1.5px solid var(--brume);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.corr .qq{font-weight:700;margin-bottom:6px}
+.corr .ok{color:var(--vert);font-weight:700}
+.corr .ko{color:var(--rouge);font-weight:700}
+.corr .w{font-size:15px;color:var(--gris);margin-top:6px}
+footer{max-width:760px;margin:0 auto;padding:0 20px 32px;font-size:13px;color:var(--gris)}
+.hidden{display:none!important}
+.frise{display:flex;height:46px;border-radius:8px;overflow:hidden;margin:8px 0 4px}
+.frise div{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;border-right:2px solid #fff}
+.frise .P{background:var(--brume);color:var(--ardoise)}.frise .C{background:var(--rouge)}.frise .AT{background:var(--ardoise)}
+.heures{position:relative;height:34px;font-size:12px;color:var(--gris)}.heures span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.leg{display:flex;gap:16px;font-size:14px;margin-top:10px}.leg i{display:inline-block;width:14px;height:12px;margin-right:6px;vertical-align:-1px;border-radius:2px}
+table.sem{border-collapse:collapse;width:100%;max-width:420px;background:var(--blanc);margin:10px 0 6px}
+table.sem td{border:1px solid var(--brume);padding:8px 12px}table.sem tr:last-child td{font-weight:700;background:#f1f5f9}
+.xq{background:var(--blanc);border:1.5px solid var(--brume);border-radius:12px;padding:14px 16px;margin:14px 0}
+.xq p{font-weight:700;margin:0 0 10px}
+.xq button{display:block;width:100%;text-align:left;font-weight:500;margin-bottom:8px;border-color:var(--brume);background:var(--blanc);color:var(--ardoise)}
+.xq button.bon{border-color:var(--vert);background:#eef7f1}.xq button.faux{border-color:var(--rouge);background:#fdf3f2}
+.xq .w{font-size:15px;color:var(--ardoise);border-left:3px solid var(--vert);padding-left:10px;margin-top:6px}
+.ctx{background:var(--blanc);border-left:5px solid var(--ardoise);border-radius:10px;padding:12px 16px;margin:10px 0 14px}
+
+@media (max-width:560px){.choix{grid-template-columns:1fr}h1{font-size:26px}.question{font-size:20px}header.top .client{font-size:12px}}
+@media (prefers-reduced-motion:reduce){.prog i{transition:none}}
+@media print{header.top .client,.no-print,footer{display:none!important}body{background:#fff;font-size:11pt}.corr{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="waplanner" viewBox="0 0 1011.76 215"><defs>
+    <clipPath id="ch1">
+      <rect x="26.5" y="26.5" width="135" height="135" rx="25" ry="25" />
+    </clipPath>
+  </defs>
+  <g transform="translate(100.852,115.699) rotate(180) translate(-100.852,-115.699) translate(12.368,27.215) scale(0.82967)">
+    <rect x="10.30" y="10.30" width="167.40" height="167.40" rx="41.20" ry="41.20" fill="rgb(31, 41, 55)" />
+    <rect x="26.5" y="26.5" width="135" height="135" rx="25" ry="25" fill="rgb(203, 213, 225)" />
+    <rect x="68" y="68" width="135" height="135" rx="25" ry="25" fill="rgb(223, 140, 131)" />
+    <rect x="68" y="68" width="135" height="135" rx="25" ry="25" fill="rgb(199, 54, 38)" clip-path="url(#ch1)" />
+  </g>
+  <g transform="translate(-13.24,0)">
+
+  <g fill="rgb(199, 54, 38)">
+      <path transform="translate(242.909,162.500) scale(0.08000,-0.08000)" d="M636 0H394L60 1000H299L516 353L732 1000H973L1189 353L1406 1000H1645L1311 0H1069L852 650Z" />
+      <path transform="translate(373.629,162.500) scale(0.08000,-0.08000)" d="M874 1000H1118V0H874L863 124Q822 57 754.5 15.5Q687 -26 595 -26Q484 -26 387.0 16.0Q290 58 216.5 132.0Q143 206 101.5 303.0Q60 400 60 511Q60 618 99.5 712.0Q139 806 210.0 877.0Q281 948 374.0 988.0Q467 1028 574 1028Q673 1028 751.5 984.0Q830 940 885 872ZM589 209Q667 209 727.0 248.0Q787 287 821.0 353.5Q855 420 855 500Q855 581 821.0 647.5Q787 714 726.5 753.0Q666 792 589 792Q512 792 448.5 752.5Q385 713 347.5 647.0Q310 581 310 500Q310 419 348.0 353.0Q386 287 449.5 248.0Q513 209 589 209Z" />
+  </g>
+  <g fill="rgb(31, 41, 55)">
+      <path transform="translate(469.469,162.500) scale(0.08000,-0.08000)" d="M288 -500H120V1000H288V829Q339 917 424.0 971.5Q509 1026 626 1026Q735 1026 830.5 985.0Q926 944 998.0 871.5Q1070 799 1111.0 704.0Q1152 609 1152 500Q1152 391 1111.0 295.0Q1070 199 998.0 126.5Q926 54 830.5 13.0Q735 -28 626 -28Q509 -28 424.0 26.5Q339 81 288 169ZM624 863Q527 863 454.0 814.0Q381 765 341.5 683.0Q302 601 302 500Q302 400 341.5 317.0Q381 234 453.5 185.0Q526 136 624 136Q721 136 802.0 184.5Q883 233 932.0 315.5Q981 398 981 500Q981 600 933.0 682.5Q885 765 804.0 814.0Q723 863 624 863Z" />
+      <path transform="translate(564.589,162.500) scale(0.08000,-0.08000)" d="M120 0V1500H288V0Z" />
+      <path transform="translate(596.509,162.500) scale(0.08000,-0.08000)" d="M924 1000H1092V0H924L917 169Q870 82 787.5 28.0Q705 -26 591 -26Q481 -26 385.0 15.5Q289 57 215.5 130.5Q142 204 101.0 300.0Q60 396 60 507Q60 614 100.0 709.0Q140 804 211.5 875.5Q283 947 377.0 987.5Q471 1028 579 1028Q697 1028 786.0 972.5Q875 917 930 829ZM588 137Q687 137 759.5 185.5Q832 234 871.5 317.0Q911 400 911 500Q911 602 871.0 684.5Q831 767 758.5 815.5Q686 864 588 864Q489 864 408.0 815.0Q327 766 279.5 683.5Q232 601 232 500Q232 399 281.0 316.5Q330 234 411.0 185.5Q492 137 588 137Z" />
+      <path transform="translate(690.269,162.500) scale(0.08000,-0.08000)" d="M1004 622V0H836V585Q836 661 799.0 723.0Q762 785 700.0 821.5Q638 858 562 858Q487 858 424.5 821.5Q362 785 325.0 723.0Q288 661 288 585V0H120V1000H288V875Q341 945 422.0 986.5Q503 1028 598 1028Q710 1028 802.5 973.5Q895 919 949.5 827.0Q1004 735 1004 622Z" />
+      <path transform="translate(776.989,162.500) scale(0.08000,-0.08000)" d="M1004 622V0H836V585Q836 661 799.0 723.0Q762 785 700.0 821.5Q638 858 562 858Q487 858 424.5 821.5Q362 785 325.0 723.0Q288 661 288 585V0H120V1000H288V875Q341 945 422.0 986.5Q503 1028 598 1028Q710 1028 802.5 973.5Q895 919 949.5 827.0Q1004 735 1004 622Z" />
+      <path transform="translate(862.109,162.500) scale(0.08000,-0.08000)" d="M560 -26Q422 -26 308.5 45.0Q195 116 127.5 235.5Q60 355 60 500Q60 610 99.0 705.5Q138 801 206.5 873.5Q275 946 366.0 987.0Q457 1028 560 1028Q673 1028 767.5 982.5Q862 937 929.5 856.0Q997 775 1030.5 668.0Q1064 561 1055 439H239Q251 354 295.0 287.5Q339 221 407.5 182.0Q476 143 560 142Q650 142 723.0 188.5Q796 235 841 316L1012 276Q952 143 831.0 58.5Q710 -26 560 -26ZM234 571H886Q878 655 832.0 724.5Q786 794 715.0 836.0Q644 878 560 878Q476 878 406.0 837.0Q336 796 290.5 726.5Q245 657 234 571Z" />
+      <path transform="translate(950.509,162.500) scale(0.08000,-0.08000)" d="M120 0V1000H288V875Q341 945 422.0 986.5Q503 1028 598 1028Q656 1028 710 1013L642 845Q601 858 562 858Q487 858 424.5 821.5Q362 785 325.0 723.0Q288 661 288 585V0Z" />
+  </g>
+</g>
+</svg>
+
+<div class="client">Formation <b>Eurial</b><br>Réglementation sociale du transport</div>
+</div></header>
+<main id="app"></main>
+<footer>WaPlanner Formation — LINUSCULE SAS — organisme de formation n° 53351043835, certifié Qualiopi</footer>
+<script>
+const DATA = [{"code":"positionnement","titre":"Questionnaire de positionnement initial","court":"Positionnement","intro":"À remplir en début de formation. Il mesure vos connaissances de départ : répondez sans chercher, et choisissez « Je ne sais pas » plutôt que de deviner.","corrige":false,"jnsp":true,"qs":[{"t":"Temps de conduite et de repos","q":"Quelle est la durée normale du repos journalier d’un conducteur soumis au règlement (CE) 561/2006 ?","o":["8 heures","9 heures","11 heures","12 heures"],"a":2},{"t":"Temps de conduite et de repos","q":"Au bout de combien de temps de conduite continue le conducteur doit-il prendre une pause ?","o":["4 heures","4 h 30","5 heures","6 heures"],"a":1},{"t":"Temps de conduite et de repos","q":"En transport national, à partir de quel poids total autorisé en charge un véhicule de marchandises est-il soumis au règlement 561/2006 ?","o":["Plus de 2,5 tonnes","Plus de 3,5 tonnes","Plus de 7,5 tonnes","Plus de 12 tonnes"],"a":1},{"t":"Temps de conduite et de repos","q":"Quelle est la durée maximale de conduite sur une semaine ?","o":["48 heures","56 heures","60 heures","90 heures"],"a":1},{"t":"Durée du travail (droit national)","q":"Quelle est la durée maximale du temps de service quotidien d’un conducteur de transport routier de marchandises ?","o":["10 heures","11 heures","12 heures","13 heures"],"a":2},{"t":"Chronotachygraphe et carte","q":"Sur le chronotachygraphe, quel pictogramme correspond à l’activité « autres tâches » (chargement, déchargement, attente de durée imprévisible) ?","o":["Le lit","Les deux marteaux croisés","Le carré barré d’une diagonale","Le volant"],"a":1},{"t":"Chronotachygraphe et carte","q":"Qui prend en charge le coût de la carte conducteur d’un salarié ?","o":["Le conducteur","L’employeur","L’État","Le coût est partagé à parts égales"],"a":1},{"t":"Chronotachygraphe et carte","q":"Tous les combien de jours, au maximum, les données de la carte conducteur doivent-elles être téléchargées par l’entreprise ?","o":["7 jours","28 jours","90 jours","365 jours"],"a":1},{"t":"Contrôles et responsabilités","q":"Lors d’un contrôle sur route, sur quelle période le conducteur doit-il pouvoir justifier de son activité ?","o":["Le jour en cours uniquement","Le jour en cours et les 28 jours précédents","Le jour en cours et les 56 jours précédents","Les 12 derniers mois"],"a":2},{"t":"Contrôles et responsabilités","q":"Un donneur d’ordre (expéditeur, commissionnaire, destinataire) qui impose des délais incompatibles avec les temps de conduite et de repos peut-il être sanctionné ?","o":["Non, seul le conducteur est responsable","Non, seul l’employeur du conducteur est responsable","Oui, il encourt une amende","Seulement s’il est lui-même transporteur"],"a":2}]},{"code":"evaluation","titre":"Évaluation des acquis","court":"Évaluation","intro":"À remplir en fin de formation. Une seule bonne réponse par question. Le corrigé s’affiche à la fin.","corrige":true,"jnsp":false,"qs":[{"t":"Temps de conduite et de repos","q":"Combien de repos journaliers réduits (au moins 9 heures) un conducteur peut-il prendre entre deux repos hebdomadaires ?","o":["1","2","3","Autant qu’il le souhaite"],"a":2,"w":"Au plus 3 repos journaliers réduits entre deux repos hebdomadaires, sans compensation (règlement 561/2006, art. 8)."},{"t":"Temps de conduite et de repos","q":"La pause de 45 minutes après 4 h 30 de conduite peut être fractionnée :","o":["En 30 minutes puis 15 minutes","En 15 minutes puis 30 minutes, dans cet ordre","En trois pauses de 15 minutes","Elle ne peut pas être fractionnée"],"a":1,"w":"Fractionnement possible en une pause d’au moins 15 minutes suivie d’une pause d’au moins 30 minutes, dans cet ordre (art. 7)."},{"t":"Temps de conduite et de repos","q":"Quelle est la durée minimale d’un repos hebdomadaire normal ?","o":["24 heures","35 heures","45 heures","48 heures"],"a":2,"w":"Repos hebdomadaire normal : au moins 45 heures. Il peut être réduit à 24 heures, avec compensation avant la fin de la troisième semaine suivante (art. 8)."},{"t":"Temps de conduite et de repos","q":"Un repos hebdomadaire réduit à 24 heures doit être compensé :","o":["Avant la fin de la semaine suivante","Avant la fin de la troisième semaine suivant la semaine concernée","Dans le mois civil","Il n’a pas à être compensé"],"a":1,"w":"La réduction est compensée en bloc, rattachée à un autre repos d’au moins 9 heures, avant la fin de la troisième semaine suivant la semaine concernée (art. 8)."},{"t":"Temps de conduite et de repos","q":"Le repos journalier peut être fractionné en deux périodes :","o":["De 6 heures puis 6 heures","D’au moins 3 heures puis d’au moins 9 heures, dans cet ordre","D’au moins 9 heures puis d’au moins 3 heures","Il ne peut pas être fractionné"],"a":1,"w":"Repos journalier fractionné : 3 heures au moins, puis 9 heures au moins, soit 12 heures au total (art. 4)."},{"t":"Durée du travail (droit national)","q":"Un conducteur dont le temps de travail quotidien dépasse 9 heures doit bénéficier d’une pause d’au moins :","o":["20 minutes","30 minutes","45 minutes","1 heure"],"a":2,"w":"Pour le personnel roulant : 30 minutes au-delà de 6 heures de travail, 45 minutes au-delà de 9 heures, fractionnables en périodes d’au moins 15 minutes."},{"t":"Durée du travail (droit national)","q":"Lorsqu’une partie du travail est accomplie entre minuit et 5 heures, la durée quotidienne du travail d’un conducteur ne peut excéder :","o":["8 heures","10 heures","12 heures","Il n’y a pas de limite particulière"],"a":1,"w":"10 heures par période de 24 heures (code des transports, art. L. 3312-1)."},{"t":"Chronotachygraphe et carte","q":"En cas de perte ou de vol de sa carte, le conducteur peut continuer à conduire :","o":["Non, il doit cesser immédiatement de conduire","Oui, pendant 15 jours au maximum, en imprimant et complétant des tickets chaque jour","Oui, sans limite de durée jusqu’à réception de la nouvelle carte","Oui, mais seulement 24 heures"],"a":1,"w":"Conduite possible 15 jours au maximum, après déclaration et demande de remplacement, avec tickets imprimés et complétés en début et fin de journée (règlement (UE) 165/2014, art. 35)."},{"t":"Chronotachygraphe et carte","q":"Tous les combien de jours, au maximum, la mémoire du chronotachygraphe du véhicule doit-elle être téléchargée ?","o":["28 jours","56 jours","90 jours","365 jours"],"a":2,"w":"90 jours pour la mémoire du véhicule, 28 jours pour la carte conducteur ; données conservées 1 an dans l’entreprise."},{"t":"Contrôles et responsabilités","q":"La falsification des données enregistrées par le chronotachygraphe est punie au maximum de :","o":["Une amende de 4e classe (750 €)","Une amende de 5e classe (1 500 €)","6 mois d’emprisonnement et 3 750 € d’amende","1 an d’emprisonnement et 30 000 € d’amende"],"a":3,"w":"Délit puni d’un an d’emprisonnement et de 30 000 € d’amende (code des transports, art. L. 3315-4)."}]}];
+const FORMATEUR_MAIL = "jraud@waplanner.com";
+const SESSIONS = ["10 octobre 2026 — Villeroy (Fouchères)","14 novembre 2026 — La Crèche"];
+const app = document.getElementById("app");
+const st = { nom:"", session:"", q:null, i:0, rep:[], fin:null };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function accueil(pre){
+  let h = '<h1>Espace apprenants</h1>';
+  h += '<p class="lead">Pour les questionnaires, indiquez votre nom et votre session, puis ouvrez celui demandé par le formateur. Les exercices sont accessibles sans identification.</p>';
+  h += '<label class="f" for="nom">Nom et prénom</label><input type="text" id="nom" autocomplete="name" value="'+esc(st.nom)+'">';
+  h += '<label class="f" for="ses">Session</label><select id="ses"><option value="">Choisir votre session</option>';
+  SESSIONS.forEach(s => h += '<option'+(s===st.session?' selected':'')+'>'+esc(s)+'</option>');
+  h += '</select><div class="choix">';
+  DATA.forEach(q => {
+    if (pre && pre!==q.code) return;
+    h += '<button class="carte" data-c="'+q.code+'"><span class="moment">'+(q.code==="positionnement"?"En début de formation":"En fin de formation")+'</span>'
+      + '<span class="nom">'+esc(q.titre)+'</span><span class="det">'+q.qs.length+' questions, environ 5 minutes</span></button>';
+  });
+  if (!pre || pre==="exercices") h += '<button class="carte" data-x="1"><span class="moment">Pendant la formation</span><span class="nom">Exercices d’application</span><span class="det">'+EXOS.length+' cas pratiques corrigés, sans envoi de résultat</span></button>';
+  h += '</div><div class="err" id="err" role="alert"></div>';
+  app.innerHTML = h;
+  app.querySelectorAll(".carte").forEach(b => b.addEventListener("click", () => {
+    if (b.dataset.x) { exo(0); return; }
+    st.nom = document.getElementById("nom").value.trim();
+    st.session = document.getElementById("ses").value;
+    const e = document.getElementById("err");
+    if (!st.nom) { e.textContent = "Indiquez votre nom et prénom."; document.getElementById("nom").focus(); return; }
+    if (!st.session) { e.textContent = "Choisissez votre session."; document.getElementById("ses").focus(); return; }
+    demarrer(b.dataset.c);
+  }));
+}
+
+function demarrer(code){
+  st.q = DATA.find(x => x.code===code); st.i = 0; st.rep = new Array(st.q.qs.length).fill(null); st.fin = null;
+  app.innerHTML = '<h1>'+esc(st.q.titre)+'</h1><p class="lead">'+esc(st.q.intro)+'</p><div class="nav"><button class="g" id="ret">Retour</button><button class="p" id="go">Commencer</button></div>';
+  document.getElementById("ret").onclick = () => accueil();
+  document.getElementById("go").onclick = question;
+}
+
+function question(){
+  const q = st.q, it = q.qs[st.i], n = q.qs.length;
+  let opts = it.o.map((t,k)=>({t,k}));
+  if (q.jnsp) opts.push({t:"Je ne sais pas", k:-1, j:true});
+  let h = '<div class="etape"><span>'+esc(q.court)+'</span><span>Question '+(st.i+1)+' sur '+n+'</span></div>';
+  h += '<div class="prog"><i style="width:'+(st.i/n*100)+'%"></i></div>';
+  h += '<div class="theme">'+esc(it.t)+'</div><p class="question" id="qt">'+esc(it.q)+'</p><div role="radiogroup" aria-labelledby="qt">';
+  opts.forEach(o => {
+    const sel = st.rep[st.i]===o.k;
+    h += '<label class="opt'+(o.j?' jnsp':'')+(sel?' sel':'')+'"><input type="radio" name="r" value="'+o.k+'"'+(sel?' checked':'')+'><span>'+esc(o.t)+'</span></label>';
+  });
+  h += '</div><div class="nav"><button class="g" id="prev">'+(st.i?'Question précédente':'Retour')+'</button>'
+     + '<button class="p" id="next"'+(st.rep[st.i]===null?' disabled':'')+'>'+(st.i===n-1?'Terminer':'Question suivante')+'</button></div>';
+  app.innerHTML = h;
+  app.querySelectorAll('input[name=r]').forEach(r => r.addEventListener("change", () => {
+    st.rep[st.i] = Number(r.value);
+    app.querySelectorAll(".opt").forEach(l => l.classList.toggle("sel", l.querySelector("input").checked));
+    document.getElementById("next").disabled = false;
+  }));
+  document.getElementById("prev").onclick = () => { if (st.i) { st.i--; question(); } else demarrer(q.code); };
+  document.getElementById("next").onclick = () => { if (st.i < n-1) { st.i++; question(); } else resultat(); };
+  window.scrollTo(0,0);
+}
+
+function bilan(){
+  const q = st.q, th = {}; let ok = 0;
+  q.qs.forEach((it,k) => { th[it.t] = th[it.t] || {ok:0,total:0}; th[it.t].total++; if (st.rep[k]===it.a){ ok++; th[it.t].ok++; } });
+  return { ok, total:q.qs.length, th, date:new Date() };
+}
+
+function resultat(){
+  const q = st.q, b = bilan(); st.fin = b;
+  let h = '<h1>'+esc(q.titre)+' terminé</h1><p class="lead">'+esc(st.nom)+' — session du '+esc(st.session)+'</p>';
+  h += '<div class="score"><span class="n">'+b.ok+'</span><span class="s">bonnes réponses sur '+b.total+'</span></div>';
+  h += '<div class="jauges">';
+  Object.keys(b.th).forEach(k => { const v=b.th[k]; h += '<div class="j"><div class="l"><span>'+esc(k)+'</span><span>'+v.ok+' / '+v.total+'</span></div><div class="b"><i style="width:'+(v.ok/v.total*100)+'%"></i></div></div>'; });
+  h += '</div>';
+  if (!q.corrige) h += '<div class="note">Ce questionnaire sert à connaître votre niveau de départ. Les réponses sont vues pendant la formation, et l’évaluation de fin de journée mesurera votre progression.</div>';
+  h += '<div class="note no-print"><b>Transmettez votre résultat au formateur.</b> Le bouton ouvre votre messagerie avec un message déjà rédigé : il vous reste à l’envoyer.</div>';
+  h += '<div class="row no-print"><button class="p" id="mail">Envoyer mon résultat</button><button class="g" id="print">Imprimer ou enregistrer en PDF</button><button class="g" id="home">Retour à l’accueil</button></div>';
+  if (q.corrige) {
+    h += '<h2>Corrigé</h2>';
+    q.qs.forEach((it,k) => {
+      const r = st.rep[k], bon = r===it.a;
+      h += '<div class="corr"><div class="qq">'+(k+1)+'. '+esc(it.q)+'</div>'
+        + '<div class="'+(bon?'ok':'ko')+'">'+(bon?'Bonne réponse : ':'Votre réponse : '+esc(it.o[r])+' — bonne réponse : ')+esc(it.o[it.a])+'</div>'
+        + '<div class="w">'+esc(it.w)+'</div></div>';
+    });
+  }
+  app.innerHTML = h;
+  document.getElementById("mail").onclick = envoyer;
+  document.getElementById("print").onclick = () => window.print();
+  document.getElementById("home").onclick = () => accueil();
+  window.scrollTo(0,0);
+}
+
+function envoyer(){
+  const q = st.q, b = st.fin, d = b.date;
+  let c = "Formation Eurial — réglementation sociale du transport\n\n";
+  c += "Questionnaire : " + q.titre + "\n";
+  c += "Apprenant : " + st.nom + "\nSession : " + st.session + "\n";
+  c += "Date : " + d.toLocaleDateString("fr-FR") + " " + d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}) + "\n";
+  c += "Score : " + b.ok + " / " + b.total + "\n\nDétail par thème :\n";
+  Object.keys(b.th).forEach(k => c += "- " + k + " : " + b.th[k].ok + " / " + b.th[k].total + "\n");
+  c += "\nRéponses : " + q.qs.map((it,k) => (k+1) + (st.rep[k]===it.a ? " juste" : st.rep[k]===-1 ? " ne sait pas" : " faux")).join(", ") + "\n";
+  const sujet = q.court + " Eurial — " + st.nom + " — " + st.session + " — " + b.ok + "/" + b.total;
+  window.location.href = "mailto:" + FORMATEUR_MAIL + "?subject=" + encodeURIComponent(sujet) + "&body=" + encodeURIComponent(c);
+}
+
+const EXOS = [
+{ titre:"Pauses et conduite continue",
+  contexte:"Conducteur de la Société des transports Eurial au départ de Villeroy, porteur frigorifique de 19 t en livraison de produits laitiers. Il a terminé son repos journalier à 4h00.",
+  frise:{ debut:240, seg:[["AT",240,270],["C",270,405],["P",405,420],["C",420,555],["P",555,575],["C",575,630]] },
+  qs:[
+   {q:"La pause de 15 min prise à 6h45 est-elle valable ?", o:["Oui, c’est la première fraction de la pause","Non, une pause doit durer 45 min d’un seul tenant"], a:0,
+    w:"Oui : la pause peut être fractionnée en 15 min puis 30 min, dans cet ordre. Ces 15 min comptent comme première fraction."},
+   {q:"La pause de 20 min prise à 9h15 est-elle valable ?", o:["Oui, elle complète la première fraction","Non, la seconde fraction doit durer au moins 30 min"], a:1,
+    w:"Non : à 9h15, le conducteur cumule 4h30 de conduite (2h15 + 2h15). La seconde fraction doit faire au moins 30 min ; 20 min ne suffisent pas."},
+   {q:"Quelle durée de conduite continue atteint-il à 10h30 ?", o:["3h10","4h30","5h25","6h00"], a:2,
+    w:"2h15 + 2h15 + 55 min = 5h25, sans pause valable : dépassement de 55 min sur les 4h30 autorisées (règlement 561/2006, art. 7)."},
+   {q:"Il a commencé à 4h00. Quelle est sa durée maximale de travail sur la journée ?", o:["10 heures","12 heures","13 heures","Pas de limite particulière"], a:0,
+    w:"Une partie du travail est accomplie entre minuit et 5h00 : la durée du travail est limitée à 10 heures par période de 24 heures (code des transports, art. L. 3312-1)."}
+  ]},
+{ titre:"Durées de conduite sur la semaine",
+  contexte:"Conducteur de la Société des transports Eurial en tournées régionales. La semaine précédente, il a conduit 45h00. Temps de conduite relevés cette semaine au chronotachygraphe :",
+  tableau:[["Lundi","9h00"],["Mardi","10h00"],["Mercredi","10h00"],["Jeudi","9h30"],["Vendredi","9h00"],["Total de la semaine","47h30"]],
+  qs:[
+   {q:"Quel jour le conducteur est-il en infraction sur la conduite journalière ?", o:["Mardi","Mercredi","Jeudi","Aucun"], a:2,
+    w:"La conduite journalière est de 9h, portée à 10h deux fois par semaine. Mardi et mercredi utilisent les deux extensions : jeudi, 9h30 dépasse de 30 min."},
+   {q:"La durée de conduite de la semaine (47h30) est-elle conforme ?", o:["Oui","Non"], a:0,
+    w:"Oui : le maximum hebdomadaire est de 56 heures."},
+   {q:"Sur les deux semaines consécutives, le conducteur a-t-il respecté la limite ?", o:["Oui, 92h30 est sous la limite","Non, 92h30 dépasse les 90h de 2h30","Non, 92h30 dépasse les 56h × 2","Oui, il n’y a pas de limite sur deux semaines"], a:1,
+    w:"45h00 + 47h30 = 92h30, pour un maximum de 90 heures sur deux semaines consécutives : dépassement de 2h30."},
+   {q:"Combien d’heures pourra-t-il conduire au maximum la semaine suivante ?", o:["42h30","45h00","47h30","56h00"], a:0,
+    w:"90h − 47h30 = 42h30 au maximum, pour respecter la limite sur deux semaines."}
+  ]},
+{ titre:"Repos journalier et reprise du service",
+  contexte:"Conducteur de la Société des transports Eurial. Mardi, il termine son service à 19h30 au site de La Crèche. Mercredi, l’exploitation lui demande de reprendre à 4h00 pour une livraison matinale. Depuis son dernier repos hebdomadaire, il a déjà pris un repos journalier réduit.",
+  qs:[
+   {q:"Quelle durée de repos le conducteur aurait-il entre 19h30 et 4h00 ?", o:["7h30","8h30","9h00","9h30"], a:1,
+    w:"De 19h30 à 4h00 : 8h30 de repos."},
+   {q:"Ce repos est-il conforme ?", o:["Oui, c’est un repos réduit","Non, un repos réduit doit durer au moins 9 heures","Oui, le repos peut descendre à 8 heures en national"], a:1,
+    w:"Non : le repos journalier normal est de 11 heures, réductible à 9 heures au minimum (3 fois au plus entre deux repos hebdomadaires). 8h30 est insuffisant."},
+   {q:"À quelle heure au plus tôt peut-il reprendre mercredi, avec un repos réduit ?", o:["4h00","4h30","5h30","6h30"], a:1,
+    w:"19h30 + 9h = 4h30. Ce sera son deuxième repos réduit : il ne lui en restera plus qu’un avant son prochain repos hebdomadaire."},
+   {q:"Et avec un repos journalier normal ?", o:["5h30","6h00","6h30","7h30"], a:2,
+    w:"19h30 + 11h = 6h30. Pour tenir une reprise à 4h00, l’exploitation doit avancer la fin de service de mardi à 19h00 au plus tard (repos réduit de 9h)."}
+  ]}
+];
+
+const hh = m => Math.floor(m/60)+"h"+String(m%60).padStart(2,"0");
+const dd = m => m>=60 ? Math.floor(m/60)+"h"+(m%60?String(m%60).padStart(2,"0"):"") : m+" min";
+function exo(i){
+  const x = EXOS[i];
+  let h = '<div class="etape"><span>Exercice '+(i+1)+' sur '+EXOS.length+'</span><span>Cliquez sur une réponse pour la vérifier</span></div>';
+  h += '<h1>'+esc(x.titre)+'</h1><div class="ctx">'+esc(x.contexte)+'</div>';
+  if (x.frise){
+    const a=x.frise.seg[0][1], z=x.frise.seg[x.frise.seg.length-1][2], L=z-a;
+    h += '<div class="frise">'+x.frise.seg.map(([k,s,e])=>'<div class="'+k+'" style="width:'+((e-s)/L*100)+'%">'+((e-s)>=30?dd(e-s):'')+'</div>').join('')+'</div>';
+    const pts=[a].concat(x.frise.seg.map(s=>s[2]));
+    h += '<div class="heures">'+pts.map((m,k)=>'<span style="left:'+((m-a)/L*100)+'%;top:'+(k%2?16:0)+'px">'+hh(m)+'</span>').join('')+'</div>';
+    h += '<div class="leg"><span><i style="background:var(--rouge)"></i>Conduite</span><span><i style="background:var(--brume)"></i>Pause</span><span><i style="background:var(--ardoise)"></i>Autres tâches</span></div>';
+  }
+  if (x.tableau) h += '<table class="sem">'+x.tableau.map(r=>'<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td></tr>').join('')+'</table>';
+  x.qs.forEach((q,k)=>{
+    h += '<div class="xq" data-k="'+k+'"><p>'+(k+1)+'. '+esc(q.q)+'</p>'+q.o.map((o,j)=>'<button data-j="'+j+'">'+esc(o)+'</button>').join('')+'<div class="w hidden">'+esc(q.w)+'</div></div>';
+  });
+  h += '<div class="nav"><button class="g" id="xp">'+(i?'Exercice précédent':'Accueil')+'</button><button class="p" id="xn">'+(i<EXOS.length-1?'Exercice suivant':'Terminer')+'</button></div>';
+  app.innerHTML = h;
+  app.querySelectorAll(".xq").forEach(div => {
+    const q = x.qs[div.dataset.k];
+    div.querySelectorAll("button").forEach(b => b.onclick = () => {
+      const j = Number(b.dataset.j);
+      div.querySelectorAll("button").forEach(o => o.classList.remove("bon","faux"));
+      b.classList.add(j===q.a ? "bon" : "faux");
+      if (j===q.a) div.querySelector(".w").classList.remove("hidden");
+    });
+  });
+  document.getElementById("xp").onclick = () => i ? exo(i-1) : accueil();
+  document.getElementById("xn").onclick = () => i<EXOS.length-1 ? exo(i+1) : accueil();
+  window.scrollTo(0,0);
+}
+
+const pre = (location.hash||"").slice(1);
+accueil(DATA.some(x=>x.code===pre) || pre==="exercices" ? pre : null);
+</script>
+</body>
+</html>
